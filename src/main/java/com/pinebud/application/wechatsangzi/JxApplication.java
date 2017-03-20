@@ -60,7 +60,7 @@ public class JxApplication {
     public DataSource dataSource(){
         DriverManagerDataSource ds=new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl("jdbc:postgresql://localhost:5432/weixin?useUnicode=true&amp;characterEncoding=UTF-8");
+        ds.setUrl("jdbc:postgresql://localhost:5432/pet?useUnicode=true&amp;characterEncoding=UTF-8");
         ds.setUsername("postgres");
         ds.setPassword("root");
         return ds;
@@ -71,7 +71,7 @@ public class JxApplication {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
         LocalSessionFactoryBean sfb=new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource);
-        sfb.setPackagesToScan("org.uvlab.cloud.service.weixin");
+        sfb.setPackagesToScan("com.pinebud.application.wechatsangzi.service");
         Properties props=new Properties();
         props.setProperty("dialect","org.hibernate.dialect.PostgreSQL95Dialect");
         sfb.setHibernateProperties(props);
