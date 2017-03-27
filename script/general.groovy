@@ -1,6 +1,6 @@
-import com.pinebud.application.wechatsangzi.service.flow.JxFlow
-import com.pinebud.application.wechatsangzi.service.flow.JxFlowDao
-import com.pinebud.application.wechatsangzi.service.pet.JxPetDao
+import com.pinebud.application.wechat.pet.service.flow.JxFlow
+import com.pinebud.application.wechat.pet.service.flow.JxFlowDao
+import com.pinebud.application.wechat.pet.service.pet.JxPetDao
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
