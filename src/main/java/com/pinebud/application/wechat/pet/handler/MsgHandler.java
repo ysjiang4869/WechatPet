@@ -1,10 +1,10 @@
 package com.pinebud.application.wechat.pet.handler;
 
 import com.pinebud.application.wechat.pet.builder.TextBuilder;
-import com.pinebud.application.wechat.pet.service.flow.JxFlow;
-import com.pinebud.application.wechat.pet.service.flow.JxFlowDao;
-import com.pinebud.application.wechat.pet.service.pet.JxPet;
-import com.pinebud.application.wechat.pet.service.pet.JxPetDao;
+import com.pinebud.application.wechat.pet.service.flow.Flow;
+import com.pinebud.application.wechat.pet.service.flow.FlowDao;
+import com.pinebud.application.wechat.pet.service.pet.Pet;
+import com.pinebud.application.wechat.pet.service.pet.PetDao;
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
@@ -34,7 +34,7 @@ import java.util.Map;
 
 /**
  * 
- * @author Binary Wang
+ * @author Jiang YueSong
  *
  */
 @Component
@@ -49,10 +49,10 @@ public class MsgHandler extends AbstractHandler {
         }
     }
     @Autowired
-    private JxFlowDao flowDao;
+    private FlowDao flowDao;
 
     @Autowired
-    private JxPetDao petDao;
+    private PetDao petDao;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -65,11 +65,11 @@ public class MsgHandler extends AbstractHandler {
 
         //组装回复消息
         String content;
-        HashMap<String,Object> params=new HashMap<>();
+        Map<String,Object> params=new HashMap<>();
         params.put("message",wxMessage);
         params.put("flowDao",flowDao);
         params.put("petDao",petDao);
-        JxFlow flow=flowDao.get(wxMessage.getFromUser());
+        Flow flow=flowDao.get(wxMessage.getFromUser());
         if(flow!=null){
             params.put("step",flow.getStep());
             content=this.execute(flow.getFlow(),params);
@@ -116,7 +116,7 @@ public class MsgHandler extends AbstractHandler {
         JSONObject selfInfo=new JSONObject();
         inputText.put("text",wxMessage.getContent());
         userInfo.put("apiKey","74ca22e4b15a1fe5822adaeec945ca99");
-        JxPet pet=petDao.get(wxMessage.getFromUser());
+        Pet pet=petDao.get(wxMessage.getFromUser());
         int id=0;
         if(pet!=null){
             id=pet.getId();

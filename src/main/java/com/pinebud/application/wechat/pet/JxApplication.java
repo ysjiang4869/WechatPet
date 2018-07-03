@@ -28,7 +28,7 @@ import java.util.Properties;
 public class JxApplication {
     private static final Logger log= LoggerFactory.getLogger(JxApplication.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(new Object[]{JxApplication.class}, args);
 
     }
@@ -58,7 +58,7 @@ public class JxApplication {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
         LocalSessionFactoryBean sfb=new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource);
-        sfb.setPackagesToScan("com.pinebud.application.wechatsangzi.service");
+        sfb.setPackagesToScan("com.pinebud.application.wechat.pet.service");
         Properties props=new Properties();
         props.setProperty("dialect","org.hibernate.dialect.PostgreSQL95Dialect");
         sfb.setHibernateProperties(props);
